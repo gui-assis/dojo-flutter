@@ -11,11 +11,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         lazy: true,
-        create: (BuildContext context) => ShowBloc(LoadingShowState(), ShowRepository()),
+        create: (BuildContext context) => ShowBloc(LoadingShowState(), ShowRepository(RestShowProvider())),
         child: MaterialApp(
-          initialRoute: '/',
+          initialRoute: '/show',
           routes: {
-            '/': (BuildContext context) => ShowPage(),
+            '/show': (BuildContext context) => ShowPage(),
           },
         ));
   }

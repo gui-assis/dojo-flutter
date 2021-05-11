@@ -14,7 +14,8 @@ class _ShowPageState extends State<ShowPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Show'),
+        backgroundColor: Theme.of(context).primaryColor,
+        title: Text('Search show'),
       ),
       body: ShowScreen(showBloc: BlocProvider.of(context)),
     );

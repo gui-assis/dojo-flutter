@@ -10,6 +10,10 @@ abstract class ShowState extends Equatable {
   List<Object?> get props => (propss);
 }
 
+class FindShowState extends ShowState {
+  FindShowState() : super([]);
+}
+
 class LoadingShowState extends ShowState {
   LoadingShowState() : super([]);
 

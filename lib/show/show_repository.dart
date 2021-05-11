@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:dojo/show/index.dart';
 
 class ShowRepository {
-  ShowRepository();
+  final ShowProvider httpProvider;
 
-  Future<ShowModel> getAsync(String token) async {
-    throw Exception(">>> Not implemented exception");
+  ShowRepository(this.httpProvider);
+
+  Future<ShowModel> getAsync(String showId) async {
+    return httpProvider.loadAsync(showId);
   }
 }

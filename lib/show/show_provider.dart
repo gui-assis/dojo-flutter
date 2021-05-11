@@ -9,6 +9,12 @@ abstract class ShowProvider {
 
 class RestShowProvider implements ShowProvider {
   Future<ShowModel> loadAsync(String showId) async {
-    throw Exception(">>> Not implemented exception");
+    final response = await http.get(Uri.https('api.tvmaze.com', 'shows/$showId'));
+
+    if (response.statusCode == 200) {
+      return ShowModel.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to load show');
+    }
   }
 }

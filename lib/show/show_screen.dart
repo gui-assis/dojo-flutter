@@ -18,7 +18,7 @@ class ShowScreenState extends State<ShowScreen> {
   @override
   void initState() {
     super.initState();
-    _load();
+    widget._showBloc.add(ShowSearchEvent());
   }
 
   @override
@@ -41,16 +41,56 @@ class ShowScreenState extends State<ShowScreen> {
           if (currentState is ErrorShowState) {
             return Center(
                 child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
                 Text(currentState.errorMessage),
                 Padding(
                   padding: const EdgeInsets.only(top: 32.0),
                   child: ElevatedButton(
                     child: Text('reload'),
-                    onPressed: _load,
+                    onPressed: () { widget._showBloc.add(ShowSearchEvent()); },
                   ),
                 ),
+              ],
+            ));
+          }
+
+          if (currentState is LoadedShowState) {
+            return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.network(
+                      currentState.showModel.imageUrl, 
+                      height: 150,
+                      width: 150,),
+                    Text(currentState.showModel.name),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 32.0),
+                      child: ElevatedButton(
+                    
+                      child: Text('New Search'),
+                      onPressed: () { widget._showBloc.add(ShowSearchEvent()); },
+                    ),
+                )
+              ],
+            ));
+          }
+
+          if (currentState is FindShowState) {
+            return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text("Show Id"),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 32, right: 32),
+                      child: TextField(
+                      onSubmitted: (String value) async { 
+                         _load(value);
+                      },
+                ),
+                    )
               ],
             ));
           }
@@ -62,7 +102,7 @@ class ShowScreenState extends State<ShowScreen> {
         });
   }
 
-  void _load() {
-    widget._showBloc.add(LoadShowEvent());
+  void _load(String velho) {
+    widget._showBloc.add(LoadShowEvent(velho));
   }
 }
