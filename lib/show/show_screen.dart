@@ -54,16 +54,7 @@ class ShowScreenState extends State<ShowScreen> {
               ],
             ));
           }
-           if (currentState is LoadedShowState) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(currentState.showModel.name),
-                ],
-              ),
-            );
-          }
+
           return Center(
               child: CircularProgressIndicator(),
           );

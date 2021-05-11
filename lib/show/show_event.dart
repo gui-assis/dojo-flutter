@@ -1,10 +1,6 @@
 import 'package:meta/meta.dart';
 
 @immutable
-abstract class ShowEvent {
-
-}
-
-class UnShowEvent extends ShowEvent {}
+abstract class ShowEvent {}
 
 class LoadShowEvent extends ShowEvent {}

@@ -13,11 +13,7 @@ class ShowBloc extends Bloc<ShowEvent, ShowState> {
   @override
   Stream<ShowState> mapEventToState(ShowEvent event,) async* {
     try {
-      if (event is LoadShowEvent) {
-        yield LoadingShowState();
-        final show = await showRepository.getAsync("1");
-        yield LoadedShowState(show);
-      }
+      throw Exception(">>> Not implemented exception");
     } catch (_, stackTrace) {
       developer.log('$_', name: 'ShowBloc', error: _, stackTrace: stackTrace);
       yield ErrorShowState(_.toString());
